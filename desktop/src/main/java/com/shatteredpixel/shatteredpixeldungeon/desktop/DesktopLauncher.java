@@ -63,12 +63,14 @@ public class DesktopLauncher {
 			}
 		}
 		
-		final String title;
-		if (DesktopLauncher.class.getPackage().getSpecificationTitle() == null){
-			title = System.getProperty("Specification-Title");
-		} else {
-			title = DesktopLauncher.class.getPackage().getSpecificationTitle();
+		String t = DesktopLauncher.class.getPackage().getSpecificationTitle();
+		if (t == null){
+			t = System.getProperty("Specification-Title");
 		}
+		if (t == null){
+			t = "Solo levelling Dungeon";
+		}
+		final String title = t;
 		
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 			@Override
@@ -99,14 +101,14 @@ public class DesktopLauncher {
 					TinyFileDialogs.tinyfd_messageBox(title + " Has Crashed!",
 							title + " was not able to initialize its graphics display, sorry about that!\n\n" +
 									"This usually happens when your graphics card has misconfigured drivers or does not support openGL 2.0+.\n\n" +
-									"If you are certain the game should work on your computer, please message the developer (Evan@ShatteredPixel.com)\n\n" +
+									"If you are certain the game should work on your computer, please message the developer (berryloopofficial@gmail.com)\n\n" +
 									"version: " + Game.version + "\n" +
 									exceptionMsg,
 							"ok", "error", false);
 				} else {
 					TinyFileDialogs.tinyfd_messageBox(title + " Has Crashed!",
 							title + " has run into an error it cannot recover from and has crashed, sorry about that!\n\n" +
-									"If you could, please email this error message to the developer (Evan@ShatteredPixel.com):\n\n" +
+									"If you could, please email this error message to the developer (berryloopofficial@gmail.com):\n\n" +
 									"version: " + Game.version + "\n" +
 									exceptionMsg,
 							"ok", "error", false);
@@ -119,11 +121,15 @@ public class DesktopLauncher {
 		if (Game.version == null) {
 			Game.version = System.getProperty("Specification-Version");
 		}
+		if (Game.version == null) {
+			Game.version = "4.0.0";
+		}
 		
 		try {
 			Game.versionCode = Integer.parseInt(DesktopLauncher.class.getPackage().getImplementationVersion());
-		} catch (NumberFormatException e) {
-			Game.versionCode = Integer.parseInt(System.getProperty("Implementation-Version"));
+		} catch (Exception e) {
+			String verCode = System.getProperty("Implementation-Version");
+			Game.versionCode = verCode != null ? Integer.parseInt(verCode) : 912;
 		}
 
 		if (UpdateImpl.supportsUpdates()){
@@ -137,14 +143,15 @@ public class DesktopLauncher {
 		
 		config.setTitle( title );
 
-		//if I were implementing this from scratch I would use the full implementation title for saves
-		// (e.g. /.shatteredpixel/shatteredpixeldungeon), but we have too much existing save
-		// date to worry about transferring at this point.
 		String vendor = DesktopLauncher.class.getPackage().getImplementationTitle();
 		if (vendor == null) {
 			vendor = System.getProperty("Implementation-Title");
 		}
-		vendor = vendor.split("\\.")[1];
+		if (vendor == null || !vendor.contains(".")) {
+			vendor = "com.ranesh";
+		} else {
+			vendor = vendor.split("\\.")[1];
+		}
 
 		String basePath = "";
 		Files.FileType baseFileType = null;
