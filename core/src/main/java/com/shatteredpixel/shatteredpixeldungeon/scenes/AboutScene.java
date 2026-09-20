@@ -67,11 +67,11 @@ public class AboutScene extends PixelScene {
 		//*** Shattered Pixel Dungeon Credits ***
 
 		CreditsBlock shpx = new CreditsBlock(true, Window.SHPX_COLOR,
-				"Shattered Pixel Dungeon",
+				"Solo levelling Dungeon",
 				Icons.SHPX.get(),
-				"Developed by: _Evan Debenham_\nBased on Pixel Dungeon's open source",
-				"ShatteredPixel.com",
-				"https://ShatteredPixel.com");
+				"Developed by: _Ranesh / BerryLoop_\nBased on Shattered Pixel Dungeon",
+				"berryloopofficial@gmail.com",
+				"mailto:berryloopofficial@gmail.com");
 		if (landscape()){
 			shpx.setRect((w - fullWidth)/2f - 6, insets.top + 26, 120, 0);
 		} else {
