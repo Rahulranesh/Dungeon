@@ -538,6 +538,8 @@ public class HeroSelectScene extends PixelScene {
 			fadeLeft.scale.x = 3 + Math.max(fadeLeftScale, 0)*alpha;
 			fadeLeft.x = background.x-4;
 			fadeRight.x = background.x + background.width() + 4;
+		} else {
+			background.x = (Camera.main.width - background.width())/2f;
 		}
 
 		fadeLeft.x = background.x-5;
