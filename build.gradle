@@ -11,7 +11,7 @@ buildscript {
 allprojects {
 
     ext {
-        appName = 'Solo levelling Dungeon'
+        appName = 'Solo Leveling: Dungeon System'
         appPackageName = 'com.ranesh.dungeon'
 
         //Full releases gets +2 on version code, needed for an F-Droid quirk
