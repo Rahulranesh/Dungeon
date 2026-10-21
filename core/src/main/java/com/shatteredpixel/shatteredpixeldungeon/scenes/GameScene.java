@@ -110,7 +110,9 @@ import com.shatteredpixel.shatteredpixeldungeon.ui.StyledButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Tag;
 import com.shatteredpixel.shatteredpixeldungeon.ui.TargetHealthIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Toast;
+import com.shatteredpixel.shatteredpixeldungeon.ui.QuestBanner;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Toolbar;
+import com.shatteredpixel.shatteredpixeldungeon.windows.WndMissionBriefing;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndBag;
@@ -214,6 +216,7 @@ public class GameScene extends PixelScene {
 	private LootIndicator loot;
 	private ActionIndicator action;
 	private ResumeIndicator resume;
+	private QuestBanner questBanner;
 
 	{
 		inGameScene = true;
@@ -529,6 +532,10 @@ public class GameScene extends PixelScene {
 		log.newLine();
 		add( log );
 
+		questBanner = new QuestBanner();
+		questBanner.camera = uiCamera;
+		add( questBanner );
+
 		if (uiSize > 0){
 			bringToFront(status);
 		}
@@ -776,6 +783,11 @@ public class GameScene extends PixelScene {
 		if (!invVisible) toggleInvPane();
 		fadeIn();
 
+		if (Dungeon.depth == 1 && !WndMissionBriefing.shownThisRun && InterlevelScene.mode != InterlevelScene.Mode.CONTINUE) {
+			WndMissionBriefing.shownThisRun = true;
+			show( new WndMissionBriefing() );
+		}
+
 		//re-show WndResurrect if needed
 		if (!Dungeon.hero.isAlive()){
 			//check if hero has an unblessed ankh
@@ -808,6 +820,11 @@ public class GameScene extends PixelScene {
 		scene = null;
 		Badges.saveGlobal();
 		Journal.saveGlobal();
+
+		if (questBanner != null) {
+			questBanner.destroy();
+			questBanner = null;
+		}
 		
 		super.destroy();
 	}
@@ -1042,6 +1059,20 @@ public class GameScene extends PixelScene {
 		if (scene.tagResume) {
 			scene.resume.setRect( tagLeft, pos - Tag.SIZE, tagWidth, Tag.SIZE );
 			scene.resume.flip(tagsOnLeft);
+		}
+
+		if (scene.questBanner != null) {
+			float bannerW = Math.min(uiCamera.width - 20, 210);
+			float bannerH = 16;
+			scene.questBanner.setSize(bannerW, bannerH);
+			float bannerX = (uiCamera.width - bannerW) / 2f;
+			float bannerY;
+			if (SPDSettings.interfaceSize() > 0 || PixelScene.landscape()) {
+				bannerY = (scene.boss != null && scene.boss.visible) ? scene.boss.bottom() + 2 : 2;
+			} else {
+				bannerY = scene.status != null ? scene.status.bottom() + 2 : 2;
+			}
+			scene.questBanner.setPos(bannerX, bannerY);
 		}
 	}
 	

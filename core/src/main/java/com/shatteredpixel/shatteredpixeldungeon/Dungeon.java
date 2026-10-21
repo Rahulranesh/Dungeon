@@ -92,6 +92,7 @@ import com.watabou.utils.SparseArray;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import com.shatteredpixel.shatteredpixeldungeon.windows.WndMissionBriefing;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -216,6 +217,7 @@ public class Dungeon {
 
 	//we initialize the seed separately so that things like interlevelscene can access it early
 	public static void initSeed(){
+		WndMissionBriefing.shownThisRun = false;
 		if (daily) {
 			//Ensures that daily seeds are not in the range of user-enterable seeds
 			seed = SPDSettings.lastDaily() + DungeonSeed.TOTAL_SEEDS;

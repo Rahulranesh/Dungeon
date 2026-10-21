@@ -24,6 +24,7 @@ package com.shatteredpixel.shatteredpixeldungeon.ui;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.noosa.Camera;
+import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.utils.PointF;
 
@@ -45,27 +46,33 @@ public class Compass extends Image {
 		
 		this.cell = cell;
 		cellCenter = DungeonTilemap.tileCenterToWorld( cell );
-		visible = false;
+		visible = true;
 	}
 	
 	@Override
 	public void update() {
 		super.update();
 		
-		if (cell < 0 || cell >= Dungeon.level.length()){
+		if (cell < 0 || Dungeon.level == null || cell >= Dungeon.level.length()){
 			visible = false;
 			return;
 		}
 		
-		visible = Dungeon.level.visited[cell] || Dungeon.level.mapped[cell];
+		visible = true;
 		
-		if (visible) {
-			PointF scroll = Camera.main.scroll;
-			if (!scroll.equals( lastScroll )) {
-				lastScroll.set( scroll );
-				PointF center = Camera.main.center().offset( scroll );
-				angle = (float)Math.atan2( cellCenter.x - center.x, center.y - cellCenter.y ) * RAD_2_G;
-			}
+		PointF scroll = Camera.main.scroll;
+		PointF center = Camera.main.center().offset( scroll );
+		angle = (float)Math.atan2( cellCenter.x - center.x, center.y - cellCenter.y ) * RAD_2_G;
+
+		boolean revealed = Dungeon.level.visited[cell] || Dungeon.level.mapped[cell];
+		if (revealed) {
+			alpha( 1.0f );
+			hardlight( 0.2f, 1.0f, 0.4f );
+		} else {
+			// Subtle radar pulse guiding the adventurer toward the descent stairs
+			float pulse = 0.55f + 0.25f * (float)Math.sin( Game.timeTotal * 4f );
+			alpha( pulse );
+			hardlight( 0.0f, 0.85f, 1.0f );
 		}
 	}
 }
