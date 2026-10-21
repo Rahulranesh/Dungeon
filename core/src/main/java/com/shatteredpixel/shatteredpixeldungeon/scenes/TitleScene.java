@@ -172,6 +172,7 @@ public class TitleScene extends PixelScene {
 		add(btnPlay);
 
 		btnSupport = new SupportButton(GREY_TR, Messages.get(this, "support"));
+		btnSupport.visible = false;
 		add(btnSupport);
 
 		btnRankings = new StyledButton(GREY_TR,Messages.get(this, "rankings")){
@@ -195,10 +196,12 @@ public class TitleScene extends PixelScene {
 
 		btnNews = new NewsButton(GREY_TR, Messages.get(this, "news"));
 		btnNews.icon(Icons.get(Icons.NEWS));
+		btnNews.visible = false;
 		add(btnNews);
 
 		btnChanges = new ChangesButton(GREY_TR, Messages.get(this, "changes"));
 		btnChanges.icon(Icons.get(Icons.CHANGES));
+		btnChanges.visible = false;
 		add(btnChanges);
 
 		btnSettings = new SettingsButton(GREY_TR, Messages.get(this, "settings"));
