@@ -253,7 +253,9 @@ public abstract class RegularLevel extends Level {
 
 		Mob mob = null;
 		while (mobsToSpawn > 0) {
-			if (mob == null) mob = createMob();
+			if (mob == null) {
+				mob = createMob();
+			}
 			Room roomToSpawn;
 			
 			if (!stdRoomIter.hasNext()) {
