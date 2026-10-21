@@ -217,33 +217,23 @@ public class TitleScene extends PixelScene {
 		add(btnAbout);
 		
 		final int BTN_HEIGHT = 20;
-		int GAP = (int)(h - topRegion - (landscape() ? 3 : 4)*BTN_HEIGHT)/3;
-		GAP /= landscape() ? 3 : 5;
-		GAP = Math.max(GAP, 2);
+		int GAP = (int)(h - topRegion - 3*BTN_HEIGHT)/4;
+		GAP = (int)GameMath.gate(2, GAP, 6);
 
 		float buttonAreaWidth = landscape() ? PixelScene.MIN_WIDTH_L-6 : PixelScene.MIN_WIDTH_P-2;
 		float btnAreaLeft = insets.left + (w - buttonAreaWidth) / 2f;
-		if (landscape()) {
-			btnPlay.setRect(btnAreaLeft, insets.top + topRegion+GAP, (buttonAreaWidth/2)-1, BTN_HEIGHT);
-			align(btnPlay);
-			btnSupport.setRect(btnPlay.right()+2, btnPlay.top(), btnPlay.width(), BTN_HEIGHT);
-			btnRankings.setRect(btnPlay.left(), btnPlay.bottom()+ GAP, (float) (Math.floor(buttonAreaWidth/3f)-1), BTN_HEIGHT);
-			btnJournal.setRect(btnRankings.right()+2, btnRankings.top(), btnRankings.width(), BTN_HEIGHT);
-			btnNews.setRect(btnJournal.right()+2, btnJournal.top(), btnRankings.width(), BTN_HEIGHT);
-			btnSettings.setRect(btnRankings.left(), btnRankings.bottom() + GAP, btnRankings.width(), BTN_HEIGHT);
-			btnChanges.setRect(btnSettings.right()+2, btnSettings.top(), btnRankings.width(), BTN_HEIGHT);
-			btnAbout.setRect(btnChanges.right()+2, btnSettings.top(), btnRankings.width(), BTN_HEIGHT);
-		} else {
-			btnPlay.setRect(btnAreaLeft, insets.top + topRegion+GAP, buttonAreaWidth, BTN_HEIGHT);
-			align(btnPlay);
-			btnSupport.setRect(btnPlay.left(), btnPlay.bottom()+ GAP, btnPlay.width(), BTN_HEIGHT);
-			btnRankings.setRect(btnPlay.left(), btnSupport.bottom()+ GAP, (btnPlay.width()/2)-1, BTN_HEIGHT);
-			btnJournal.setRect(btnRankings.right()+2, btnRankings.top(), btnRankings.width(), BTN_HEIGHT);
-			btnNews.setRect(btnRankings.left(), btnRankings.bottom()+ GAP, btnRankings.width(), BTN_HEIGHT);
-			btnChanges.setRect(btnNews.right()+2, btnNews.top(), btnNews.width(), BTN_HEIGHT);
-			btnSettings.setRect(btnNews.left(), btnNews.bottom()+GAP, btnRankings.width(), BTN_HEIGHT);
-			btnAbout.setRect(btnSettings.right()+2, btnSettings.top(), btnSettings.width(), BTN_HEIGHT);
-		}
+		float halfBtnWidth = (buttonAreaWidth - 2) / 2f;
+
+		float topPos = insets.top + topRegion + GAP;
+
+		btnPlay.setRect(btnAreaLeft, topPos, buttonAreaWidth, BTN_HEIGHT);
+		align(btnPlay);
+
+		btnRankings.setRect(btnAreaLeft, btnPlay.bottom() + GAP, halfBtnWidth, BTN_HEIGHT);
+		btnJournal.setRect(btnRankings.right() + 2, btnRankings.top(), halfBtnWidth, BTN_HEIGHT);
+
+		btnSettings.setRect(btnAreaLeft, btnRankings.bottom() + GAP, halfBtnWidth, BTN_HEIGHT);
+		btnAbout.setRect(btnSettings.right() + 2, btnSettings.top(), halfBtnWidth, BTN_HEIGHT);
 
 		version = new BitmapText( "v" + Game.version, pixelFont);
 		version.measure();
@@ -251,6 +241,13 @@ public class TitleScene extends PixelScene {
 		version.x = insets.left + w - version.width() - (DeviceCompat.isDesktop() ? 4 : 8);
 		version.y = insets.top + h - version.height() - (DeviceCompat.isDesktop() ? 2 : 4);
 		add( version );
+
+		BitmapText creator = new BitmapText( "by Ranesh & Sherlin Jenifer", pixelFont );
+		creator.measure();
+		creator.hardlight( 0x888888 );
+		creator.x = insets.left + (DeviceCompat.isDesktop() ? 4 : 8);
+		creator.y = insets.top + h - creator.height() - (DeviceCompat.isDesktop() ? 2 : 4);
+		add( creator );
 
 		btnFade = new IconButton(Icons.CHEVRON.get()){
 			@Override

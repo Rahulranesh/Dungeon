@@ -782,6 +782,8 @@ public class WndSettings extends WndTabbed {
 		CheckBox chkUpdates;
 		CheckBox chkBetas;
 		CheckBox chkWifi;
+		RedButton btnTerms;
+		RedButton btnPrivacy;
 
 		@Override
 		protected void createChildren() {
@@ -840,6 +842,22 @@ public class WndSettings extends WndTabbed {
 				chkWifi.checked(SPDSettings.WiFi());
 				add(chkWifi);
 			}
+
+			btnTerms = new RedButton("Terms of Use", 8){
+				@Override
+				protected void onClick() {
+					parent.addToFront(new WndLegal(WndLegal.Type.TERMS));
+				}
+			};
+			add(btnTerms);
+
+			btnPrivacy = new RedButton("Privacy Policy", 8){
+				@Override
+				protected void onClick() {
+					parent.addToFront(new WndLegal(WndLegal.Type.PRIVACY));
+				}
+			};
+			add(btnPrivacy);
 		}
 
 		@Override
@@ -870,6 +888,16 @@ public class WndSettings extends WndTabbed {
 			if (chkWifi != null){
 				chkWifi.setRect(0, pos + GAP, width, BTN_HEIGHT);
 				pos = chkWifi.bottom();
+			}
+
+			if (width > 200){
+				btnTerms.setRect(0, pos + GAP*2, width/2 - 1, BTN_HEIGHT);
+				btnPrivacy.setRect(width/2 + 1, pos + GAP*2, width/2 - 1, BTN_HEIGHT);
+				pos = btnTerms.bottom();
+			} else {
+				btnTerms.setRect(0, pos + GAP*2, width, BTN_HEIGHT);
+				btnPrivacy.setRect(0, btnTerms.bottom() + GAP, width, BTN_HEIGHT);
+				pos = btnPrivacy.bottom();
 			}
 
 			height = pos;
