@@ -359,6 +359,8 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	public void flash() {
 		ra = ba = ga = 1f;
 		flashTime = FLASH_INTERVAL;
+		origin.set( width / 2f, height );
+		scale.set( 1.10f, 0.90f );
 	}
 
 	private final HashSet<State> stateAdditions = new HashSet<>();
@@ -582,6 +584,13 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 		
 		if (flashTime > 0 && (flashTime -= Game.elapsed) <= 0) {
 			resetColor();
+		}
+
+		if (scale.x != 1f || scale.y != 1f) {
+			scale.x += (1f - scale.x) * Math.min( 1f, Game.elapsed * 18f );
+			scale.y += (1f - scale.y) * Math.min( 1f, Game.elapsed * 18f );
+			if (Math.abs(scale.x - 1f) < 0.005f) scale.x = 1f;
+			if (Math.abs(scale.y - 1f) < 0.005f) scale.y = 1f;
 		}
 
 		synchronized (State.class) {

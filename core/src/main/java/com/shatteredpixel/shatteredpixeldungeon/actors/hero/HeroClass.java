@@ -172,6 +172,10 @@ public enum HeroClass {
 	}
 
 	private static void initWarrior( Hero hero ) {
+		// Knight starts with a small defensive health advantage.
+		hero.HP += 2;
+		hero.HT += 2;
+
 		(hero.belongings.weapon = new WornShortsword()).identify();
 		ThrowingStone stones = new ThrowingStone();
 		stones.identify().collect();

@@ -78,18 +78,32 @@ public class MobSpawner extends Actor {
 						Rat.class, Rat.class, Rat.class,
 						Snake.class));
 			case 2:
-				//2x rat, 1x snake, 2x gnoll
+				//2x rat, 1x snake, 2x gnoll, 1x corrupted slime, 1x thorn crawler
 				return new ArrayList<>(Arrays.asList(Rat.class, Rat.class,
 						Snake.class,
-						Gnoll.class, Gnoll.class));
+						Gnoll.class, Gnoll.class,
+						CorruptedSlime.class,
+						ThornCrawler.class));
 			case 3:
-				//1x rat, 1x snake, 3x gnoll, 1x swarm, 1x crab
+				//1x rat, 1x snake, 3x gnoll, 1x swarm, 1x crab, 2x corrupted slime, 2x thorn crawler, 2x wild wisp
 				return new ArrayList<>(Arrays.asList(Rat.class,
 						Snake.class,
 						Gnoll.class, Gnoll.class, Gnoll.class,
 						Swarm.class,
-						Crab.class));
-			case 4: case 5:
+						Crab.class,
+						CorruptedSlime.class, CorruptedSlime.class,
+						ThornCrawler.class, ThornCrawler.class,
+						WildWisp.class, WildWisp.class));
+			case 4:
+				//1x gnoll, 1x swarm, 2x crab, 2x slime, 3x corrupted slime, 3x thorn crawler, 3x wild wisp
+				return new ArrayList<>(Arrays.asList(Gnoll.class,
+						Swarm.class,
+						Crab.class, Crab.class,
+						Slime.class, Slime.class,
+						CorruptedSlime.class, CorruptedSlime.class, CorruptedSlime.class,
+						ThornCrawler.class, ThornCrawler.class, ThornCrawler.class,
+						WildWisp.class, WildWisp.class, WildWisp.class));
+			case 5:
 				//1x gnoll, 1x swarm, 2x crab, 2x slime
 				return new ArrayList<>(Arrays.asList(Gnoll.class,
 						Swarm.class,
