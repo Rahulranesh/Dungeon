@@ -18,3 +18,8 @@ local.properties
 #intellij project files
 *.iml
 *.idea
+
+#firebase hosting
+.firebase/
+firebase-debug.log*
+firebase-debug.*.log*

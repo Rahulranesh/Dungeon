@@ -1,3 +1,8 @@
 #libGDX native dependancies
 libgdx.so
 libgdx-freetype.so
+
+#release signing files
+*.jks
+*.keystore
+keystore.properties

@@ -41,8 +41,8 @@ public class WndLegal extends Window {
 	public static String APP_NAME       = "Solo Levelling Dungeon";
 	public static String DEVELOPER_NAME = "Ranesh / BerryLoop and Sherlin Jenifer";
 	public static String CONTACT_EMAIL  = "berryloopofficial@gmail.com";
-	public static String PRIVACY_URL    = "https://berryloop.com/privacy";
-	public static String TERMS_URL      = "https://berryloop.com/terms";
+	public static String PRIVACY_URL    = "https://dungeon-10f9f.web.app/privacy";
+	public static String TERMS_URL      = "https://dungeon-10f9f.web.app/terms";
 
 	private static final int WIDTH_P    = 130;
 	private static final int WIDTH_L    = 200;
