@@ -28,12 +28,12 @@ public class CorruptedSlimeSprite extends SlimeSprite {
 	public CorruptedSlimeSprite() {
 		super();
 		// Corrupted dark violet hue with glowing luminescence
-		hardlight( 0.65f, 0.35f, 0.95f );
+		hardlight( 0.35f, 0.85f, 0.45f );
 	}
 
 	@Override
 	public int blood() {
-		return 0xFF6A2082;
+		return 0xFF2D5C38;
 	}
 
 	@Override

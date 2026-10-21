@@ -51,7 +51,7 @@ public class CorruptedSlime extends Slime {
 		if (Random.Int(5) == 0) {
 			Buff.affect( enemy, Ooze.class );
 			if (enemy.sprite != null && enemy.sprite.visible) {
-				Splash.at( enemy.sprite.center(), 0xFF6A2082, 5 );
+				Splash.at( enemy.sprite.center(), 0xFF2D5C38, 5 );
 				Sample.INSTANCE.play( Assets.Sounds.DEBUFF );
 			}
 		}
@@ -63,7 +63,7 @@ public class CorruptedSlime extends Slime {
 		super.damage( dmg, src );
 		// Spatters caustic droplets when taking substantial damage
 		if (isAlive() && dmg >= 3 && sprite != null && sprite.visible) {
-			Splash.at( sprite.center(), 0xFF6A2082, 4 );
+			Splash.at( sprite.center(), 0xFF2D5C38, 4 );
 		}
 	}
 
@@ -71,7 +71,7 @@ public class CorruptedSlime extends Slime {
 	public void die( Object cause ) {
 		super.die( cause );
 		if (Dungeon.level != null && sprite != null && sprite.visible) {
-			Splash.at( sprite.center(), 0xFF6A2082, 14 );
+			Splash.at( sprite.center(), 0xFF2D5C38, 14 );
 			Sample.INSTANCE.play( Assets.Sounds.PUFF );
 		}
 	}

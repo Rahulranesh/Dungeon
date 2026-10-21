@@ -166,12 +166,12 @@ public class StatusPane extends Component {
 		add( exp );
 
 		expText = new BitmapText(PixelScene.pixelFont);
-		expText.hardlight( Window.TITLE_COLOR );
+		expText.hardlight( 0xFFFFAA );
 		expText.alpha(0.6f);
 		add(expText);
 
 		level = new BitmapText( PixelScene.pixelFont);
-		level.hardlight( Window.TITLE_COLOR );
+		level.hardlight( 0xFFFFAA );
 		add( level );
 
 		buffs = new BuffIndicator( Dungeon.hero, large );
