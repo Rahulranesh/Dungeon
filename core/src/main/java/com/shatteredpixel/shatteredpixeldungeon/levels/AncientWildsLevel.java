@@ -25,6 +25,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Splash;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.LeafParticle;
+import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShaftParticle;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.SewerPainter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.AlarmTrap;
@@ -106,6 +107,10 @@ public class AncientWildsLevel extends SewerLevel {
 				group.add(new WildSporeEmitter(i));
 			}
 		}
+		int exit = level.exit();
+		if (exit >= 0 && exit < level.length()) {
+			group.add(new ExitBeaconEmitter(exit));
+		}
 	}
 
 	@Override
@@ -165,6 +170,26 @@ public class AncientWildsLevel extends SewerLevel {
 			PointF p = DungeonTilemap.tileCenterToWorld(pos);
 			pos(p.x, p.y, 8, 8);
 			pour(LeafParticle.LEVEL_SPECIFIC, 3.5f);
+		}
+
+		@Override
+		public void update() {
+			if (visible = (pos < Dungeon.level.heroFOV.length && Dungeon.level.heroFOV[pos])) {
+				super.update();
+			}
+		}
+	}
+
+	private static class ExitBeaconEmitter extends Emitter {
+
+		private int pos;
+
+		public ExitBeaconEmitter(int pos) {
+			super();
+			this.pos = pos;
+			PointF p = DungeonTilemap.tileCenterToWorld(pos);
+			pos(p.x - 4, p.y - 4, 8, 8);
+			pour(ShaftParticle.FACTORY, 0.45f);
 		}
 
 		@Override
