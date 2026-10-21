@@ -47,7 +47,7 @@ import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
 /**
- * Realmfall first region: The Ancient Wilds.
+ * Solo Levelling Dungeon first region: The Ancient Wilds.
  * An overgrown subterranean forest reclaimed by primordial nature and corruption.
  */
 public class AncientWildsLevel extends SewerLevel {

@@ -66,7 +66,7 @@ public class AndroidMissingNativesHandler extends Activity {
 		}
 
 		TextView text = new TextView(this);
-		String message = "Realmfall failed to access some of its internal code and cannot start!\n\n" +
+		String message = "Solo Levelling Dungeon failed to access some of its internal code and cannot start!\n\n" +
 				"Try downloading the game from an official source if you haven't already. You can also screenshot this debug info and send it to the developer (berryloopofficial@gmail.com):";
 
 		message += "\n\nPackage: " + getPackageName();

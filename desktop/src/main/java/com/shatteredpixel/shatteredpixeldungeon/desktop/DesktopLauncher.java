@@ -68,7 +68,7 @@ public class DesktopLauncher {
 			t = System.getProperty("Specification-Title");
 		}
 		if (t == null){
-			t = "Realmfall";
+			t = "Solo Levelling Dungeon";
 		}
 		final String title = t;
 		

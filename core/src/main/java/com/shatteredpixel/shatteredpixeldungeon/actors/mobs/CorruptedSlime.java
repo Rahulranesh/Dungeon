@@ -24,7 +24,7 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 /**
- * A stronger early-game variant of Slime for Realmfall.
+ * A stronger early-game variant of Slime for Solo Levelling Dungeon.
  * Features caustic sludge attacks, rubbery damage resistance, and a dynamic death burst.
  */
 public class CorruptedSlime extends Slime {
